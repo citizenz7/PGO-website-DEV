@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome on Admin dashboard{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col">
+        <h3>Article Admin Index</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Posted on</th>
+                    <th>Updated on</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                        <a class="btn btn-warning btn-sm" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination justify-content-center px-2">
+            {{ knp_pagination_render(articles) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

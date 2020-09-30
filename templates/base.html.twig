@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Welcome!{% endblock %}</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  {% block stylesheets %}{% endblock %}
+
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3d8dcb;">
+    <a class="navbar-brand" href="{{ path('article_index') }}">PengolinCoin Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ path('article_index') }}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            PGO links
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="https://www.pengolincoin.xyz">Website</a>
+            <a class="dropdown-item" href="http://blockexplorer.pengolincoin.xyz">Block Explorer</a>
+            <a class="dropdown-item" href="https://www.pengolincoin.xyz/PGOvideos.php">PGO videos & tuto</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="https://www.pengolincoin.xyz/#charityPGO">Charity</a>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ path('category_index') }}">Categories</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ path('admin_index') }}">Admin</a>
+        </li>
+      </ul>
+      {% if app.user %}
+        <span class="text-white">Welcome {{ app.user.username }}, <a class="text-white" href="{{ path('app_logout') }}">Logout</a></span>
+      {% else %}
+        <a class="nav-link text-white" href="{{ path('app_register') }}">Register</a> <a class="nav-link text-white" href="{{ path('app_login') }}">Login</a>
+      {% endif %}
+    </div>
+  </nav>
+</header>
+
+  <div class="container py-4 px-0">
+    {% block body %}{% endblock %}
+  </div>
+
+  <footer>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item">
+          <a class="nav-link">&copy; {{ 'now'|date('Y') }} - The PGO Project</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Telegram</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Discord</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Terms & privacy policy</a>
+        </li>
+      </ul>
+    </nav>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+  {% block javascripts %}{% endblock %}
+</body>
+
+</html>

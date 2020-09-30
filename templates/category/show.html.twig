@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category{% endblock %}
+
+{% block body %}
+    <h2>{{ category.title }}</h2>
+
+    <div class="row">
+        <div class="col">
+            {{ category.content | raw}}
+        </div>
+    </div>
+    
+
+    Retravailler la page : <strike>nom de la catégorie, description, (image en dur ?),</strike> liste des articles, pagination
+    <br><br>
+
+    {#}
+    <a class="btn btn-primary" href="{{ path('category_index') }}">back to list</a>
+
+    <a class="btn btn-info" href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+
+    {{ include('admin/categories/_delete_form.html.twig') }}
+    #}
+    
+{% endblock %}

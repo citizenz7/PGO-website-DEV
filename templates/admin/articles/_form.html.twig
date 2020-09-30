@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_widget(form, {'attr': {'class': 'form-group'}}) }}
+    <button class="btn btn-success mt-5">{{ button_label|default('Save') }}</button> 
+    <a class="btn btn-primary mt-5 ml-2" ref="{{ path('admin_articles') }}">back to list</a>
+{{ form_end(form) }}

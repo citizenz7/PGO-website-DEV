@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+
+<div class="row row-cols-1 row-cols-md-2">
+    {% for article in articles|slice (0,6) %}
+    <div class="col mb-4">
+        <div class="card h-100">
+            <img src="{{ article.image }}" class="card-img-top" style="max-height: 369px;" alt="{{ article.title }}">
+            <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{ article.title }} {{ article.id }}</h5>
+                <p class="text-muted" style="font-size:14px;">
+                    Posted on {{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}, by
+                    {{ article.author.username }}, in <b><a href="{{ path('category_show', {'id': article.category.id}) }}">{{ article.category.title }}</a></b>
+                </p>
+                <div class="card-text text-justify">
+                    {{ article.content | slice(0,500) | raw }} }}...
+                </div>
+                <p class="text-right">
+                    <a class="btn btn-primary btn-sm mt-2" href="{{ path('article_show', {'id': article.id}) }}">Read more</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-info btn-sm mt-2" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination justify-content-center px-2">
+    {{ knp_pagination_render(articles) }}
+</div>
+
+{#
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Image</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.content }}</td>
+                <td>{{ article.image }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('article_new') }}">Create new</a>
+#}
+
+
+{% endblock %}
