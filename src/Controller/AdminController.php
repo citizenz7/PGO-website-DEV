@@ -132,6 +132,8 @@ class AdminController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Article updated!');
+
             return $this->redirectToRoute('admin_articles');
         }
 

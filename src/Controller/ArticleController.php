@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Repository\ArticleRepository;
+use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="article_index", methods={"GET"})
      */
-    public function indexArticle(ArticleRepository $repo, Request $request, PaginatorInterface $paginator)
+    public function indexArticle(Request $request, PaginatorInterface $paginator)
     {
 
         //$donnees = $repo->findAll();
@@ -46,7 +47,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-  /**
+    /**
      * @Route("/category/{id}", name="category_show", methods={"GET"})
      */
     public function showCategory(Category $category): Response

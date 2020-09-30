@@ -28,7 +28,8 @@ class ArticleType extends AbstractType
                 'label' => 'Article content',
                 'attr' => [
                     'placeholder' => 'Write the article content',
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'rows' => '10'
                 ]
             ])
             ->add('image', TextType::class, [

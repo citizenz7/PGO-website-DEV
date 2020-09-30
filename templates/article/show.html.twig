@@ -5,32 +5,32 @@
 {% block body %}
 <div class="container py-3">
     <div class="row">
-        <div class="col bg-light mr-3 py-3 text-justify">
+        <div class="col bg-light mr-4 text-justify">
             <h1>{{ article.title }}</h1>
             <p>
                 <img src="{{ article.image }}" class="img-fluid float-left mr-3 mt-2" style="max-width: 400px;" alt="{{ article.title }}">
                 {{ article.content | raw }}
             </p>
         </div>
-        <div class="col-3 card text-center pt-3">
+        <div class="col-sm-3 card text-center pt-3">
             <span class="lead font-weight-bold">Article details</span>
             <ul class="list-group mt-3">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    posted on
+                    <i class="fas fa-calendar fa-2x" data-toggle="tooltip" data-placement="top" title="Created on" style="color: #3d8dcb;"></i> 
                   <span class="badge badge-dark badge-pill px-3" style="font-size: 14px;">{{ article.createdAt ? article.createdAt|date('Y-m-d') : '' }}</span>
                 </li>
                 {% if article.updatedAt != null %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        updated on
+                        <i class="fas fa-calendar-check fa-2x" data-toggle="tooltip" data-placement="top" title="Updated on" style="color: #3d8dcb;"></i>
                     <span class="badge badge-dark badge-pill px-3" style="font-size: 14px;">{{ article.updatedAt ? article.updatedAt|date('Y-m-d') : '' }}</span>
                     </li>
                 {% endif %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    in
-                  <span class="badge badge-dark badge-pill px-3 pb-1" style="font-size: 14px;"><a class="font-weight-bold text-white" href="{{ path('category_show', {'id': article.category.id}) }}"><i class="fas fa-caret-right"></i> {{ article.category.title }}</a></span>
+                    <i class="fas fa-tag fa-2x" data-toggle="tooltip" data-placement="top" title="Category" style="color: #3d8dcb;"></i>
+                  <span class="badge badge-dark badge-pill px-3 pb-1" style="font-size: 14px;"><a class="font-weight-bold text-white" href="{{ path('category_show', {'id': article.category.id}) }}">{{ article.category.title }} <i class="fas fa-caret-right"></i></a></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    by
+                    <i class="fas fa-user fa-2x" data-toggle="tooltip" data-placement="top" title="Author" style="color: #3d8dcb;"></i>
                     <span class="badge badge-dark badge-pill px-3" style="font-size: 14px;">{{ article.author.username }}</span>
                 </li>
               </ul>

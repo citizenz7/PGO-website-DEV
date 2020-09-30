@@ -4,81 +4,77 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}Welcome!{% endblock %}</title>
-  <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   {% block stylesheets %}{% endblock %}
 
 </head>
 
-<body>
+<body id="tothetop">
 
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3d8dcb;">
-    <a class="navbar-brand" href="{{ path('article_index') }}">PengolinCoin Blog</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="container-fluid m-0 p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #3d8dcb;">
+      <a class="navbar-brand" href="{{ path('article_index') }}"><img class="img-fluid"
+          src="https://www.pengolincoin.xyz/img/assets/PGO_64x64.png" alt="PengolinCoin">PengolinCoin <span
+          class="text-warning font-weight-bold font-italic mr-3">Blog</span></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ path('article_index') }}">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item dropdown active">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            PGO links
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="https://www.pengolincoin.xyz">Website</a>
-            <a class="dropdown-item" href="http://blockexplorer.pengolincoin.xyz">Block Explorer</a>
-            <a class="dropdown-item" href="https://www.pengolincoin.xyz/PGOvideos.php">PGO videos & tuto</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="https://www.pengolincoin.xyz/#charityPGO">Charity</a>
-          </div>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ path('category_index') }}">Categories</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ path('admin_index') }}">Admin</a>
-        </li>
-      </ul>
-      {% if app.user %}
-        <span class="text-white">Welcome {{ app.user.username }}, <a class="text-white" href="{{ path('app_logout') }}">Logout</a></span>
-      {% else %}
-        <a class="nav-link text-white" href="{{ path('app_register') }}">Register</a> <a class="nav-link text-white" href="{{ path('app_login') }}">Login</a>
-      {% endif %}
-    </div>
-  </nav>
-</header>
+      <div class="collapse navbar-collapse lead font-weight-bold" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ path('article_index') }}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              PGO links
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="https://www.pengolincoin.xyz">Website</a>
+              <a class="dropdown-item" href="http://blockexplorer.pengolincoin.xyz">Block Explorer</a>
+              <a class="dropdown-item" href="https://www.pengolincoin.xyz/PGOvideos.php">PGO videos & tuto</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="https://www.pengolincoin.xyz/#charityPGO">Charity</a>
+            </div>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ path('category_index') }}">Categories</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ path('admin_index') }}">Admin</a>
+          </li>
+        </ul>
+        {% if app.user %}
+        <span class="text-white"><i class="fas fa-user"></i> Welcome <b>{{ app.user.username }}</b>, <a
+            class="text-white" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></span>
+        {% else %}
+        <a class="nav-link text-white" href="{{ path('app_register') }}"><i class="fas fa-user-plus"></i> Register</a> <a class="nav-link text-white"
+          href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+        {% endif %}
+      </div>
+    </nav>
+  </div>
 
-  <div class="container py-4 px-0">
+  <div class="container-fluid py-4 px-5">
     {% block body %}{% endblock %}
   </div>
 
-  <footer>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <ul class="navbar-nav m-auto">
-        <li class="nav-item">
-          <a class="nav-link">&copy; {{ 'now'|date('Y') }} - The PGO Project</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Telegram</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Discord</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Terms & privacy policy</a>
-        </li>
-      </ul>
-    </nav>
-  </footer>
+  <div class="container-fluid bg-dark" style="background-color: #3d8dcb;">
+    <div class="text-center pt-3 lead">
+      <span class="text-white">&copy; {{ 'now'|date('Y') }} - The PGO Project</a> |
+        <a class="text-white" href="#">Telegram</span> |
+      <a class="text-white" href="#">Discord</a> |
+      <a class="text-white" href="#">Contact</a> |
+      <a class="text-white" href="#">Terms & privacy policy</a>
+    </div>
+    <div class="text-center py-3">
+      <a href="#tothetop"><i class="fas fa-chevron-circle-up fa-3x" style="color: #3d8dcb;"></i></a>
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">

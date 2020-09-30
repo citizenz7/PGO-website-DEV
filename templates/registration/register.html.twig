@@ -3,20 +3,30 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+<div class="container">
+    <div class="row justify-content-md-center py-5">
+        <div class="col-sm-4 card px-5 py-5">
+            {% for flashError in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+            {% endfor %}
 
-    <h1>Register</h1>
+            <h2>Register</h2>
 
-    <div class="form-group mt-5">
-        {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.username, {'label': 'Username', 'attr': {'placeholder': 'Your name', 'class': 'form-control mb-3'}}) }}
-            {{ form_row(registrationForm.email, {'label': 'Email', 'attr': {'placeholder': 'Your email', 'class': 'form-control mb-3'}}) }}
-            {{ form_row(registrationForm.plainPassword, {'label': 'Password', 'attr': {'placeholder': 'Your password', 'class': 'form-control mb-3'}}) }}
-            {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'mt-2 mb-4'}}) }}
+            <div class="form-group mt-5">
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.username, {'label': 'Username', 'attr': {'placeholder': 'Your name', 'class': 'form-control mb-3'}}) }}
+                    {{ form_row(registrationForm.email, {'label': 'Email', 'attr': {'placeholder': 'Your email', 'class': 'form-control mb-3'}}) }}
+                    {{ form_row(registrationForm.plainPassword, {'label': 'Password', 'attr': {'placeholder': 'Your password', 'class': 'form-control mb-3'}}) }}
 
-            <button type="submit" class="btn btn-success">Register</button> <button type="reset" class="btn btn-secondary">Cancel</button>
-        {{ form_end(registrationForm) }}
+                    <div class="text-center">
+                        <a href="#"><i class="fas fa-angle-right"></i> Terms & privacy policy <i class="fas fa-angle-left"></i></a><br>
+                        {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'mt-2 mb-4'}}) }}
+                        <button type="submit" class="btn btn-success">Register</button> 
+                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                    </div>
+                {{ form_end(registrationForm) }}
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}
