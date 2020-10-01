@@ -16,22 +16,22 @@
             <span class="lead font-weight-bold">Article details</span>
             <ul class="list-group mt-3">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <i class="fas fa-calendar fa-2x" data-toggle="tooltip" data-placement="top" title="Created on" style="color: #3d8dcb;"></i> 
-                  <span class="badge badge-dark badge-pill px-3" style="font-size: 14px;">{{ article.createdAt ? article.createdAt|date('Y-m-d') : '' }}</span>
+                    &rdsh;Created at
+                  <span class="badge badge-pill px-3" style="font-size: 13px; background-color: #3d8dcb; color: white;">{{ article.createdAt ? article.createdAt|date('Y-m-d') : '' }}</span>
                 </li>
                 {% if article.updatedAt != null %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <i class="fas fa-calendar-check fa-2x" data-toggle="tooltip" data-placement="top" title="Updated on" style="color: #3d8dcb;"></i>
-                    <span class="badge badge-dark badge-pill px-3" style="font-size: 14px;">{{ article.updatedAt ? article.updatedAt|date('Y-m-d') : '' }}</span>
+                        &rdsh;Updated at
+                    <span class="badge badge-dark badge-pill px-3" style="font-size: 13px; background-color: #3d8dcb; color: white;">{{ article.updatedAt ? article.updatedAt|date('Y-m-d') : '' }}</span>
                     </li>
                 {% endif %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <i class="fas fa-tag fa-2x" data-toggle="tooltip" data-placement="top" title="Category" style="color: #3d8dcb;"></i>
-                  <span class="badge badge-dark badge-pill px-3 pb-1" style="font-size: 14px;"><a class="font-weight-bold text-white" href="{{ path('category_show', {'id': article.category.id}) }}">{{ article.category.title }} <i class="fas fa-caret-right"></i></a></span>
+                    &rdsh;Category
+                  <span class="badge badge-dark badge-pill px-3 pb-1" style="font-size: 13px; background-color: #3d8dcb; color: white;"><a class="font-weight-bold text-white" href="{{ path('category_show', {'id': article.category.id}) }}">{{ article.category.title }} <i class="fas fa-caret-right"></i></a></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <i class="fas fa-user fa-2x" data-toggle="tooltip" data-placement="top" title="Author" style="color: #3d8dcb;"></i>
-                    <span class="badge badge-dark badge-pill px-3" style="font-size: 14px;">{{ article.author.username }}</span>
+                    &rdsh;Created at
+                    <span class="badge badge-dark badge-pill px-3" style="font-size: 13px; background-color: #3d8dcb; color: white;">{{ article.author.username }}</span>
                 </li>
               </ul>
 
