@@ -1,91 +1,171 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {% block title %}
+        Welcome on PengolinCoin blog!
+      {% endblock %}
+    </title>
+    <link rel="stylesheet"
+      href="https://bootswatch.com/4/cosmo/bootstrap.min.css" />
+    <link rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    {% block stylesheets %}
 
-<head>
-  <meta charset="UTF-8">
-  <title>{% block title %}Welcome!{% endblock %}</title>
-  <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.min.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  {% block stylesheets %}{% endblock %}
+    {% endblock %}
+  </head>
 
-</head>
+  <body id="tothetop">
+    <div class="container-fluid m-0 p-0">
+      <nav class="navbar navbar-expand-lg navbar-dark sticky-top"
+        style="background-color: #3d8dcb;">
+        <a class="navbar-brand" href="{{ path('article_index') }}">
+          <img class="img-fluid"
+            src="https://www.pengolincoin.xyz/img/assets/PGO_64x64.png"
+            alt="PengolinCoin" /><span class="logo">PengolinCoin</span> <span class="text-warning font-weight-bold font-italic mr-3">Blog</span>
+        </a>
+        <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-<body id="tothetop">
+        <div class="collapse navbar-collapse font-weight-bold"
+          id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('article_index') }}">
+                Home <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                PGO links
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="https://www.pengolincoin.xyz">
+                  Website
+                </a>
+                <a class="dropdown-item"
+                  href="http://blockexplorer.pengolincoin.xyz">
+                  Block Explorer
+                </a>
+                <a class="dropdown-item"
+                  href="https://www.pengolincoin.xyz/PGOvideos.php">
+                  PGO videos & tuto
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item"
+                  href="https://www.pengolincoin.xyz/#charityPGO">
+                  Charity
+                </a>
+              </div>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('category_index') }}">
+                Categories
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('admin_index') }}">Admin</a>
+            </li>
+          </ul>
 
-  <div class="container-fluid m-0 p-0">
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #3d8dcb;">
-      <a class="navbar-brand" href="{{ path('article_index') }}"><img class="img-fluid"
-          src="https://www.pengolincoin.xyz/img/assets/PGO_64x64.png" alt="PengolinCoin">PengolinCoin <span
-          class="text-warning font-weight-bold font-italic mr-3">Blog</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse lead font-weight-bold" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ path('article_index') }}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              PGO links
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="https://www.pengolincoin.xyz">Website</a>
-              <a class="dropdown-item" href="http://blockexplorer.pengolincoin.xyz">Block Explorer</a>
-              <a class="dropdown-item" href="https://www.pengolincoin.xyz/PGOvideos.php">PGO videos & tuto</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="https://www.pengolincoin.xyz/#charityPGO">Charity</a>
+          {% if app.user %}
+            <div class="btn-group dropleft">
+              <button class="btn btn-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-user fa-2x"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item">Hey!, {{ app.user.username }}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ path('app_logout') }}">
+                  <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+              </div>
             </div>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ path('category_index') }}">Categories</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ path('admin_index') }}">Admin</a>
-          </li>
-        </ul>
-        {% if app.user %}
-        <span class="text-white"><i class="fas fa-user"></i> Welcome <b>{{ app.user.username }}</b>, <a
-            class="text-white" href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></span>
-        {% else %}
-        <a class="nav-link text-white" href="{{ path('app_register') }}"><i class="fas fa-user-plus"></i> Register</a> <a class="nav-link text-white"
-          href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
-        {% endif %}
-      </div>
-    </nav>
-  </div>
-
-  <div class="container-fluid py-4 px-5">
-    {% block body %}{% endblock %}
-  </div>
-
-  <div class="container-fluid bg-dark" style="background-color: #3d8dcb;">
-    <div class="text-center pt-3 lead">
-      <span class="text-white">&copy; {{ 'now'|date('Y') }} - The PGO Project</a> |
-        <a class="text-white" href="#">Telegram</span> |
-      <a class="text-white" href="#">Discord</a> |
-      <a class="text-white" href="#">Contact</a> |
-      <a class="text-white" href="#">Terms & privacy policy</a>
+          {% else %}
+            <a class="nav-link text-white" href="{{ path('app_register') }}">
+              <i class="fas fa-user-plus"></i> Register
+            </a>
+            <a class="nav-link text-white" href="{{ path('app_login') }}">
+              <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+          {% endif %}
+        </div>
+      </nav>
     </div>
-    <div class="text-center py-3">
-      <a href="#tothetop"><i class="fas fa-chevron-circle-up fa-3x" style="color: #3d8dcb;"></i></a>
+
+    <div class="container pt-4 pb-5">
+      {% block body %}
+      {% endblock %}
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-  </script>
-  {% block javascripts %}{% endblock %}
-</body>
+    {% block footer %}
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div id="footer-copyright" class="col text-center">
+              <span class="text-muted">&copy; 2020 - The PGO Project</span>
+              <div id="footer-resources">
+                <a href="https://twitter.com/PengolinC" title="PGO Twitter">
+                  <i class="fab fa-twitter-square"></i>
+                </a>
+                <a href="https://www.facebook.com/PengolinCoin-105101314474751"
+                  title="PGO Facebook">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+                <a href="https://t.me/pengolincoin"
+                  title="PGO Telegram channel">
+                  <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="https://discord.gg/XTk8u4w"
+                  title="PGO Discord server">
+                  <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://bitcointalk.org/index.php?topic=5234832.0"
+                  title="PGO Bitcointalk thread">
+                  <i class="fab fa-bitcoin"></i>
+                </a>
+                <a href="https://github.com/pengolincoin"
+                  title="PGO Github">
+                  <i class="fab fa-github-square"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    {% endblock %}
 
+    {% block javascripts %}
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"></script>
+  </body>
 </html>

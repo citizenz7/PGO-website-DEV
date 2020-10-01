@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container py-3">
     <div class="row">
-        <div class="col bg-light mr-4 text-justify">
+        <div class="col shadow mr-4 pt-2 pb-3 text-justify">
             <h1>{{ article.title }}</h1>
             <p>
                 <img src="{{ article.image }}" class="img-fluid float-left mr-3 mt-2" style="max-width: 400px;" alt="{{ article.title }}">
@@ -33,15 +33,18 @@
                     &rdsh;Created at
                     <span class="badge badge-dark badge-pill px-3" style="font-size: 13px; background-color: #3d8dcb; color: white;">{{ article.author.username }}</span>
                 </li>
-              </ul>
-
-                
-
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center pt-5">
+                        <a class="btn btn-warning px-5" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a> 
+                        {{ include('admin/articles/_delete_form.html.twig') }}
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </div>
+</div>
 
-
-    {#}
+    {#
     <a class="btn btn-primary" href="{{ path('article_index') }}">back to list</a>
 
     <a class="btn btn-info" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
@@ -49,5 +52,4 @@
     {{ include('admin/articles/_delete_form.html.twig') }}
     #}
 
-</div>
 {% endblock %}
