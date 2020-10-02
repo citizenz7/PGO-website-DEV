@@ -33,4 +33,11 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    /**
+     * @Route("/access403", name="access403")
+     */
+    public function access403() {
+        return $this->render('security/access403.html.twig');
+    }
 }

@@ -6,8 +6,8 @@
 
 <div class="row">
     <div class="col">
-        <div class="bg-light mb-3 py-3 pr-3">
-            <h4 class="mb-3">PGO infos</h4>
+        <div class="bg-light mb-3 py-3 px-3 shadow">
+            <h4 class="mb-3 font-weight-bold">PengolinCoin [PGO] infos</h4>
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-tech" role="tab" aria-controls="nav-home" aria-selected="true">Technical</a>
@@ -21,26 +21,33 @@
                 <div class="tab-pane fade text-justify" id="nav-partners" role="tabpanel" aria-labelledby="nav-partners-tab">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</div>
               </div>
         </div>
-
+        <div class="pt-2">
+          <script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
+          <coingecko-coin-price-chart-widget currency="usd" coin-id="pengolincoin" locale="en" height="300"></coingecko-coin-price-chart-widget>
+        </div>
     </div>
 
-    <div class="col-3 card py-3 py-3 px-3 mt-4 mr-3">
+    <div class="col-3 card py-3 px-3 ml-3">
+        <h4 class="border-bottom font-weight-bold mb-3">Stats</h4>
         <p class="d-flex justify-content-between align-items-center">
-          Online articles <span class="badge badge-success badge-pill px-3">{{ articles|length }}</span>
+          Online articles <span class="badge badge-success badge-pill px-3 rounded" style="font-size: 15px;">{{ articles|length }}</span>
         </p>
         <p class="mt-1 d-flex justify-content-between align-items-center">
-          Online categories <span class="badge badge-success badge-pill px-3">{{ categories|length }}</span>
+          Online categories <span class="badge badge-success badge-pill px-3 rounded" style="font-size: 15px;">{{ categories|length }}</span>
+        </p>
+        <p class="mt-1 d-flex justify-content-between align-items-center">
+          Registered users <span class="badge badge-success badge-pill px-3 rounded" style="font-size: 15px;">{{ users|length }}</span>
         </p>
         <p class="mt-1 mb-3 pb-4 border-bottom d-flex justify-content-between align-items-center">
-          Registered users <span class="badge badge-success badge-pill px-3">{{ users|length }}</span>
+          Total page views <span class="badge badge-success badge-pill px-3 rounded" style="font-size: 15px;">54955</span>
         </p>
-        <p class="d-flex justify-content-between align-items-center">
-            <a href="{{path('article_new')}}" class="btn btn-primary">New article</a>
-            <a href="{{path('category_new')}}" class="btn btn-warning">New category</a>
+        <p class="text-center">
+            <a href="{{path('article_new')}}" class="btn btn-primary btn-block font-weight-bold rounded" style="font-size: 20px;">Create a new article</a>
+            <a href="{{path('category_new')}}" class="btn btn-warning btn-block font-weight-bold rounded" style="font-size: 20px;">Create a new category</a>
         </p>
-        <p class="border-top mt-3 py-4 d-flex justify-content-between align-items-center">
-          <a href="{{path('admin_articles')}}" class="btn btn-primary">Articles list</a>
-          <a href="{{path('admin_categories')}}" class="btn btn-warning">Categories list</a>
+        <p class="border-top py-4 d-flex justify-content-between align-items-center">
+          <a href="{{path('admin_articles')}}" class="btn btn-primary btn-sm font-weight-bold rounded">Articles list</a>
+          <a href="{{path('admin_categories')}}" class="btn btn-warning btn-sm font-weight-bold rounded">Categories list</a>
         </p>
     </div>
 
