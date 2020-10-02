@@ -1,44 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}
+Article index
+{% endblock %}
 
 {% block body %}
 
+<h2 class="font-weight-bold">Feature articles</h2>
+<div class="row mt-2 p-3">
+    {% for article in articles |slice(0, 3) %}
+    <div class="col-sm-4 shadow">
+        <span class="font-weight-bold" style="font-size:17px;">
+            <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
+        </span>
+        <div class="card-text text-justify text-muted" style="font-size:13px;">
+            <img src="{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 60px;"
+                alt="{{ article.title }}" />
+            {{ article.content|slice(0, 80)|raw }}...
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
-    <div class="row row-cols-1 row-cols-md-2 py-4">
-        {% for article in articles|slice (0,6) %}
-        <div class="col mb-4">
-            <div class="card h-100 shadow rounded">
-                <img src="{{ article.image }}" class="card-img-top" style="max-height: 369px;"
-                    alt="{{ article.title }}">
+<h2 class="font-weight-bold pt-4">Last articles</h2>
+<div class="row row-cols-1 row-cols-md-2 pt-2 pb-4">
+    {% for article in articles|slice(0, 6) %}
+    <div class="col mb-4">
+        <div class="card h-100 shadow rounded">
+            <div class="wprock-img-zoom-hover">
+                <div class="wprock-img-zoom">
+                    <img src="{{ article.image }}" class="card-img-top p-3" style="max-height: 369px;"
+                        alt="{{ article.title }}" />
+                </div>
                 <div class="card-body">
-                    <h5 class="card-title font-weight-bold">{{ article.title }} {{ article.id }}</h5>
-                    <p class="text-muted" style="font-size:13px;">
-                        <i class="fas fa-calendar-alt"></i> Posted on
-                        {{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}, <i
-                            class="fas fa-user"></i> by
-                        {{ article.author.username }}, <i class="fas fa-tag"></i> in <b><a
-                                href="{{ path('category_show', {'id': article.category.id}) }}">{{ article.category.title }}</a></b>
-                    </p>
-                    <div class="card-text text-justify">
-                        {{ article.content | slice(0,350) | raw }}...
+                    <h3 class="card-title font-weight-bold">
+                        <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
+                    </h3>
+                    <div class="card-text text-justify text-muted">
+                        {{ article.content|slice(0, 200)|raw }}...
                     </div>
                 </div>
-                <div class="card-footer bg-transparent text-right pb-3">
-                    <a class="btn btn-primary btn-sm mt-2" href="{{ path('article_show', {'id': article.id}) }}">Read
-                        more</a>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-info btn-sm mt-2" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
-                    {% endif %}
-                </div>
+            </div>
+            <div class="card-footer bg-transparent pb-3 lead">
+                <a href="{{path('category_show', { id: article.category.id }) }}"
+                    class="badge badge-primary p-2 rounded">
+                    <i class="fas fa-tag"></i> {{ article.category.title }}
+                </a>
+                <span class="badge badge-pill badge-info p-2 rounded">
+                    <i class="far fa-clock"></i>
+                    {{ article.createdAt
+                ? article.createdAt|date('d-m-Y H:i:s')
+                : '' }}
+                </span>
+                <span class="badge badge-pill badge-warning p-2 rounded">
+                    <i class="far fa-user"></i> {{ article.author.username }}
+                </span>
             </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 
-    <div class="pagination justify-content-center px-2">
-        {{ knp_pagination_render(articles) }}
-    </div>
+<div class="pagination justify-content-center px-2">
+    {{ knp_pagination_render(articles) }}
+</div>
 
 {#
     <table class="table">
@@ -77,6 +102,4 @@
 
     <a href="{{ path('article_new') }}">Create new</a>
 #}
-
-
 {% endblock %}

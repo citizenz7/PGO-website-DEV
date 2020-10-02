@@ -15,22 +15,44 @@ body {
 
 footer {
     position: absolute;
-    padding-top: 5px;
+    padding-top: 10px;
     bottom: 0;
     width: 100%;
-    height: 85px; /* Set the fixed height of the footer here */
-    line-height: 35px; /* Vertically center the text there */
+    height: 100px; /* Set the fixed height of the footer here */
+    line-height: 40px; /* Vertically center the text there */
     background-color: #f5f5f5;
 }
 
 footer p {
     color: #7b8a8b;
     font-size: 13px;
-    margin-bottom: -1.3rem
+    margin-bottom: -1.3rem;
 }
 
 footer #footer-resources i {
     color: #7b8a8b;
     font-size: 28.5px;
-    margin-left: 0.3em
+}
+
+.wprock-img-zoom-hover .wprock-img-zoom {
+    overflow: hidden;
+    position: relative; 
+}
+.wprock-img-zoom-hover .wprock-img-zoom img {
+    max-width: 100%;
+    -moz-transition: all 0.8s;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+}
+.wprock-img-zoom-hover .wprock-img-zoom * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.wprock-img-zoom-hover:hover .wprock-img-zoom img {
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
