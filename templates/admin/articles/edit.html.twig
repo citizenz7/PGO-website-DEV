@@ -5,6 +5,8 @@
 {% block body %}
     <h2>Edit Article</h2>
 
+
+
     {{ include('admin/articles/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a class="btn btn-warning" href="{{ path('admin_articles') }}">back to list</a>

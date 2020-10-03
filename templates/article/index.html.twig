@@ -1,22 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-Article index
-{% endblock %}
+{% block title %}Article index{% endblock %}
 
 {% block body %}
 
 <h2 class="font-weight-bold">Feature articles</h2>
 <div class="row mt-2 p-3">
-    {% for article in articles |slice(0, 3) %}
+    {% for article in articles | slice(1,1) %}
     <div class="col-sm-4 shadow">
         <span class="font-weight-bold" style="font-size:17px;">
             <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
         </span>
         <div class="card-text text-justify text-muted" style="font-size:13px;">
-            <img src="{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 60px;"
+            <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
                 alt="{{ article.title }}" />
-            {{ article.content|slice(0, 80)|raw }}...
+            {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
+                <i class="far fa-clock"></i>
+                {{ article.createdAt
+            ? article.createdAt|date('d-m-Y')
+            : '' }}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+    {% for article in articles | slice(4,1) %}
+    <div class="col-sm-4 shadow">
+        <span class="font-weight-bold" style="font-size:17px;">
+            <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
+        </span>
+        <div class="card-text text-justify text-muted" style="font-size:13px;">
+            <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
+                alt="{{ article.title }}" />
+            {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
+                <i class="far fa-clock"></i>
+                {{ article.createdAt
+            ? article.createdAt|date('d-m-Y')
+            : '' }}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+    {% for article in articles | slice(5,1) %}
+    <div class="col-sm-4 shadow">
+        <span class="font-weight-bold" style="font-size:17px;">
+            <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
+        </span>
+        <div class="card-text text-justify text-muted" style="font-size:13px;">
+            <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
+                alt="{{ article.title }}" />
+            {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
+                <i class="far fa-clock"></i>
+                {{ article.createdAt
+            ? article.createdAt|date('d-m-Y')
+            : '' }}
+            </span>
         </div>
     </div>
     {% endfor %}
@@ -29,19 +66,19 @@ Article index
         <div class="card h-100 shadow rounded">
             <div class="wprock-img-zoom-hover">
                 <div class="wprock-img-zoom">
-                    <img src="{{ article.image }}" class="card-img-top p-3" style="max-height: 369px;"
+                    <img src="uploads/article_image/{{ article.image }}" class="card-img-top" style="max-height: 369px;"
                         alt="{{ article.title }}" />
                 </div>
                 <div class="card-body">
-                    <h3 class="card-title font-weight-bold">
+                    <h4 class="card-title font-weight-bold">
                         <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
-                    </h3>
+                    </h4>
                     <div class="card-text text-justify text-muted">
-                        {{ article.content|slice(0, 200)|raw }}...
+                        {{ article.content|slice(0, 290)|raw }}...
                     </div>
                 </div>
             </div>
-            <div class="card-footer bg-transparent pb-3 lead">
+            <div class="card-footer bg-transparent pb-3">
                 <a href="{{path('category_show', { id: article.category.id }) }}"
                     class="badge badge-primary p-2 rounded">
                     <i class="fas fa-tag"></i> {{ article.category.title }}
@@ -54,6 +91,9 @@ Article index
                 </span>
                 <span class="badge badge-pill badge-warning p-2 rounded">
                     <i class="far fa-user"></i> {{ article.author.username }}
+                </span> 
+                <span class="badge badge-pill badge-success p-2 rounded">
+                    <i class="fas fa-eye"></i> 132
                 </span>
             </div>
         </div>

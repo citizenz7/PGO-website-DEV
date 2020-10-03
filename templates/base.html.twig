@@ -9,7 +9,7 @@
       {% endblock %}
     </title>
     <link rel="stylesheet"
-      href="https://bootswatch.com/4/cosmo/bootstrap.min.css" />
+      href="https://bootswatch.com/4/spacelab/bootstrap.min.css" />
     <link rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
@@ -45,6 +45,11 @@
                 Home <span class="sr-only">(current)</span>
               </a>
             </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('category_index') }}">
+                Categories
+              </a>
+            </li>
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle"
                 href="#"
@@ -74,30 +79,26 @@
                 </a>
               </div>
             </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{{ path('category_index') }}">
-                Categories
-              </a>
-            </li>
-            {% if is_granted('ROLE_ADMIN') %}
-              <li class="nav-item active">
-                <a class="nav-link" href="{{ path('admin_index') }}">Admin</a>
-              </li>
-            {% endif %}
           </ul>
 
           {% if app.user %}
             <div class="btn-group dropleft">
-              <button class="btn btn-secondary dropdown-toggle"
+              <button class="btn dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
-                <i class="fas fa-user fa-2x"></i>
+                <i class="fas fa-user fa-2x text-white"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item">Hey!, {{ app.user.username }}</a>
+                <span class="dropdown-item">Hey!, {{ app.user.username }}</span>
+                {% if is_granted('ROLE_ADMIN') %}
+                  <span class="dropdown-item">Status: Admin</span>
+                  <a class="dropdown-item" href="{{ path('admin_index') }}"><i class="fas fa-user-cog"></i> Go to Admin</a>
+                {% else %}
+                <span class="dropdown-item">Status: User</span>
+                {% endif %}
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ path('app_logout') }}">
                   <i class="fas fa-sign-out-alt"></i> Logout
@@ -117,8 +118,7 @@
     </div>
 
     <div class="container pt-4 pb-5">
-      {% block body %}
-      {% endblock %}
+      {% block body %}{% endblock %}
     </div>
 
     {% block footer %}

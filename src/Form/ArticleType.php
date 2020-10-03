@@ -2,14 +2,16 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\User;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ArticleType extends AbstractType
@@ -32,10 +34,19 @@ class ArticleType extends AbstractType
                     'rows' => '10'
                 ]
             ])
-            ->add('image', TextType::class, [
-                'label' => 'Article image',
-                'attr' => [
-                    'class' => 'form-control'
+            ->add('img', FileType::class, [
+                'mapped' => false, // No entity to link
+                'required' => false,
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [ // Only jpeg/jpg, png, webp
+                            'image/jpeg', 
+                            'image/png', 
+                            'image/webp'
+                          ],
+                          'mimeTypesMessage' => "File is not valid.",
+                    ])
                 ]
             ])
             //->add('created_at')

@@ -8,7 +8,7 @@
         <div class="col shadow mr-4 pt-2 pb-3 text-justify">
             <h1>{{ article.title }}</h1>
             <p>
-                <img src="{{ article.image }}" class="img-fluid float-left mr-3 mt-2" style="max-width: 400px;" alt="{{ article.title }}">
+                <img src="../uploads/article_image/{{ article.image }}" class="img-fluid float-left mr-3 mt-2" style="max-width: 400px;" alt="{{ article.title }}">
                 {{ article.content | raw }}
             </p>
         </div>
