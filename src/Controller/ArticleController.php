@@ -40,6 +40,14 @@ class ArticleController extends AbstractController
      */
     public function showArticle(Article $article): Response
     {
+        $newview = $article->getViews() + 1;
+        $article->setViews($newview);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $entityManager->persist($article);
+        $entityManager->flush();
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);

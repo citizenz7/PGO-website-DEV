@@ -54,6 +54,14 @@ class Article
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $views;
+
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,6 +147,18 @@ class Article
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getViews(): ?int
+    {
+        return $this->views;
+    }
+
+    public function setViews(int $views): self
+    {
+        $this->views = $views;
 
         return $this;
     }
