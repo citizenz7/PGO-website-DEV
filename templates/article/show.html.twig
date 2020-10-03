@@ -1,41 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ article.title }}{% endblock %}
+{% block title %}Pengolincoin Blog: {{ article.title }}{% endblock %}
 
 {% block body %}
 <div class="container py-3">
     <div class="row">
         <div class="col shadow mr-4 pt-2 pb-3 text-justify">
-            <h1>{{ article.title }}</h1>
+            <h2 class="font-weight-bold pb-3">{{ article.title }}</h2>
+            <a href="{{path('category_show', { id: article.category.id }) }}" class="badge badge-primary p-2 rounded">
+                <i class="fas fa-tag"></i> {{ article.category.title }}
+            </a>
+            <span class="badge badge-pill badge-info p-2 rounded">
+                <i class="far fa-clock"></i> {{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}
+            </span>
+            {% if article.updatedAt != null %}
+                <span class="badge badge-pill badge-secondary p-2 rounded">
+                    <i class="fas fa-history"></i> {{ article.updatedAt ? article.updatedAt|date('d-m-Y H:i:s') : '' }}
+                </span>
+            {% endif %}
+
+            <span class="badge badge-pill badge-warning p-2 rounded">
+                <i class="far fa-user"></i> {{ article.author.username }}
+            </span> 
+            <span class="badge badge-pill badge-success p-2 rounded">
+                <i class="fas fa-eye"></i> 132
+            </span>
             <p>
-                <img src="../uploads/article_image/{{ article.image }}" class="img-fluid float-left mr-3 mt-2" style="max-width: 400px;" alt="{{ article.title }}">
+                <img src="../uploads/article_image/{{ article.image }}" class="img-fluid float-left mr-3 mt-4" style="max-width: 400px;" alt="{{ article.title }}">
                 {{ article.content | raw }}
             </p>
         </div>
         <div class="col-sm-3 card text-center pt-3">
-            <span class="lead font-weight-bold">Article details</span>
+            <span class="lead font-weight-bold">Other...</span>
             <ul class="list-group mt-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    &rdsh;Created at
-                  <span class="badge badge-pill px-3" style="font-size: 13px; background-color: #3d8dcb; color: white;">{{ article.createdAt ? article.createdAt|date('Y-m-d') : '' }}</span>
-                </li>
-                {% if article.updatedAt != null %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        &rdsh;Updated at
-                    <span class="badge badge-dark badge-pill px-3" style="font-size: 13px; background-color: #3d8dcb; color: white;">{{ article.updatedAt ? article.updatedAt|date('Y-m-d') : '' }}</span>
-                    </li>
-                {% endif %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    &rdsh;Category
-                  <span class="badge badge-dark badge-pill px-3 pb-1" style="font-size: 13px; background-color: #3d8dcb; color: white;"><a class="font-weight-bold text-white" href="{{ path('category_show', {'id': article.category.id}) }}">{{ article.category.title }} <i class="fas fa-caret-right"></i></a></span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    &rdsh;Created at
-                    <span class="badge badge-dark badge-pill px-3" style="font-size: 13px; background-color: #3d8dcb; color: white;">{{ article.author.username }}</span>
-                </li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center pt-5">
-                        <a class="btn btn-warning px-5" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a> 
+                    <li class="list-group-item d-flex justify-content-between align-items-center ">
+                        <a class="btn btn-info px-4" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a> 
                         {{ include('admin/articles/_delete_form.html.twig') }}
                     </li>
                 {% endif %}
