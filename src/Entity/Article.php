@@ -59,6 +59,11 @@ class Article
      */
     private $views;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $featured;
+
 
     
 
@@ -159,6 +164,18 @@ class Article
     public function setViews(int $views): self
     {
         $this->views = $views;
+
+        return $this;
+    }
+
+    public function getFeatured(): ?string
+    {
+        return $this->featured;
+    }
+
+    public function setFeatured(string $featured): self
+    {
+        $this->featured = $featured;
 
         return $this;
     }

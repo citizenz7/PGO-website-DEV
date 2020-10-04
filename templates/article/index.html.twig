@@ -6,56 +6,24 @@
 
 <h2 class="font-weight-bold">Feature articles</h2>
 <div class="row mt-2 p-3">
-    {% for article in articles | slice(1,1) %}
-    <div class="col-sm-4 shadow">
-        <span class="font-weight-bold" style="font-size:17px;">
-            <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
-        </span>
-        <div class="card-text text-justify text-muted" style="font-size:13px;">
-            <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
-                alt="{{ article.title }}" />
-            {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
-                <i class="far fa-clock"></i>
-                {{ article.createdAt
-            ? article.createdAt|date('d-m-Y')
-            : '' }}
+    {% for article in articles %}
+        {% if article.featured == 'yes' %}
+        <div class="col-sm-4 shadow">
+            <span class="font-weight-bold" style="font-size:16px;">
+                <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
             </span>
+            <div class="card-text text-justify text-muted" style="font-size:13px;">
+                <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
+                    alt="{{ article.title }}" />
+                {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
+                    <i class="far fa-clock"></i>
+                    {{ article.createdAt
+                ? article.createdAt|date('m-d-Y')
+                : '' }}
+                </span>
+            </div>
         </div>
-    </div>
-    {% endfor %}
-    {% for article in articles | slice(4,1) %}
-    <div class="col-sm-4 shadow">
-        <span class="font-weight-bold" style="font-size:17px;">
-            <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
-        </span>
-        <div class="card-text text-justify text-muted" style="font-size:13px;">
-            <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
-                alt="{{ article.title }}" />
-            {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
-                <i class="far fa-clock"></i>
-                {{ article.createdAt
-            ? article.createdAt|date('d-m-Y')
-            : '' }}
-            </span>
-        </div>
-    </div>
-    {% endfor %}
-    {% for article in articles | slice(5,1) %}
-    <div class="col-sm-4 shadow">
-        <span class="font-weight-bold" style="font-size:17px;">
-            <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
-        </span>
-        <div class="card-text text-justify text-muted" style="font-size:13px;">
-            <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
-                alt="{{ article.title }}" />
-            {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
-                <i class="far fa-clock"></i>
-                {{ article.createdAt
-            ? article.createdAt|date('d-m-Y')
-            : '' }}
-            </span>
-        </div>
-    </div>
+        {% endif %}
     {% endfor %}
 </div>
 
@@ -86,7 +54,7 @@
                 <span class="badge badge-pill badge-info p-2 rounded">
                     <i class="far fa-clock"></i>
                     {{ article.createdAt
-                ? article.createdAt|date('d-m-Y H:i:s')
+                ? article.createdAt|date('m-d-Y H:i:s')
                 : '' }}
                 </span>
                 <span class="badge badge-pill badge-warning p-2 rounded">

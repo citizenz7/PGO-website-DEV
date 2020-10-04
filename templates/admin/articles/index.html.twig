@@ -14,7 +14,7 @@
                     <th>Title</th>
                     <th>Posted on</th>
                     <th>Updated on</th>
-                    <th>Actions</th>
+                    <th width="17%">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,11 +22,12 @@
                 <tr>
                     <td>{{ article.id }}</td>
                     <td>{{ article.title }}</td>
-                    <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td style="font-size: 13px;">{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td style="font-size: 13px;">{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="{{ path('article_show', {'id': article.id}) }}">show</a>
                         <a class="btn btn-warning btn-sm" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                        <a class="btn btn-danger btn-sm" href="{{ path('article_delete', {'id': article.id}) }}">delete</a>
                     </td>
                 </tr>
             {% else %}
