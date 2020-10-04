@@ -38,34 +38,30 @@
             <p class="pt-1">
                 <a href="https://www.pengolincoin.xyz" style="font-size:0.80rem; color:#3d8dcb;" target="_blank"><i class="fas fa-link"></i> Go to PengolinCoin homepage</a>
             </p>
-            <p class="text-justify mt-4 p-3 text-center border">
-                <span style="font-size:1rem; color:#3d8dcb;">Share this article on</span><br>
+            <p class="text-justify mt-3 p-3 text-center border">
+                <span style="font-size:1rem; color:#3d8dcb;">Share this article</span><br>
                 <a href="http://twitter.com/intent/tweet?text=%20https://blog.pengolincoin.xyz{{ path('article_show', {'id': article.id}) }}/;&url=https://twitter.com/pengolinC" target="_blank"><i class="fab fa-twitter-square fa-2x mt-2 mr-3"></i></a>
                 <a href="https://www.facebook.com/sharer?u=https://blog.pengolincoin.xyz{{ path('article_show', {'id': article.id}) }}/" target="_blank"><i class="fab fa-facebook-square fa-2x mt-2 mr-3"></i></a>
             </p>
 
             {% if is_granted('ROLE_ADMIN') %}
-                <p class="text-center pt-3" style="font-size:1rem; color:#3d8dcb;">Admin</p>
-                <div class="row text-center py-3 px-2 mx-1 border">
-                    <div class="col">
-                        <a class="btn btn-info px-4" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
-                    </div>
-                    <div class="col">
-                        {{ include('admin/articles/_delete_form.html.twig') }}
-                    </div>
-                </div>
+            <p>
+                <table class="table text-center">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a class="btn btn-info px-4" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
+                            </td>
+                            <td>
+                                {{ include('admin/articles/_delete_form.html.twig') }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             {% endif %}
-
+            </p>
         </div>
     </div>
 </div>
-
-    {#
-    <a class="btn btn-primary" href="{{ path('article_index') }}">back to list</a>
-
-    <a class="btn btn-info" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('admin/articles/_delete_form.html.twig') }}
-    #}
 
 {% endblock %}

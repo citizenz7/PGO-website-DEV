@@ -36,6 +36,7 @@ class ArticleType extends AbstractType
                 ]
             ])
             ->add('img', FileType::class, [
+                'label' => 'Featured image (2 MB max, only JPEG, PNG and WEBP files)',
                 'mapped' => false, // No entity to link
                 'required' => false,
                 'constraints' => [
