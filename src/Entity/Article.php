@@ -55,7 +55,7 @@ class Article
     private $category;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default":"1"})
      */
     private $views;
 

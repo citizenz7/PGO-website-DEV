@@ -85,7 +85,7 @@
               </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{{ path('contact') }}">
                 <i class="far fa-envelope"></i> Contact us
               </a>
             </li>
@@ -121,6 +121,15 @@
     </div>
 
     <div class="container pt-4 pb-5">
+      {% for msg in app.session.flashBag.get('successMessage') %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ msg }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+    {% endfor %}
+    
       {% block body %}{% endblock %}
     </div>
 

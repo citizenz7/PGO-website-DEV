@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact us{% endblock %}
+
+{% block body %}
+
+<h1>Contact PengolinCoin</h1>
+<div class="form-group">
+    {{ form_start(our_form) }}
+    {{ form_row(our_form.name, {'attr': {'class': 'form-control', 'placeholder': 'Your name'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(our_form.email, {'attr': {'class': 'form-control', 'placeholder': 'Your email address'}}) }}
+</div>
+<div class="form-group">
+    {{ form_row(our_form.message, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="form-group text-right">
+    <input type="submit" value="Send" class="btn btn-primary mr-3"> <input type="reset" value="Cancel" class="btn btn-secondary">
+</div>
+{{ form_end(our_form) }}
+</div>
+
+{% endblock %}

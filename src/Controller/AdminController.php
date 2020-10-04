@@ -100,7 +100,11 @@ class AdminController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
 
+            // Default date/time when creating
             $article->setCreatedAt(new \DateTime());
+            
+            // Minimum number of views for article when creating
+            $article->setViews('1');
 
             $entityManager->persist($article);
             $entityManager->flush();
