@@ -206,6 +206,9 @@ class AdminController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
+            $destination = $this->getParameter('kernel.project_dir').'/public/uploads/article_image/';
+            unlink($destination.$article->getImage());
+
             $entityManager->remove($article);
             $entityManager->flush();
         }

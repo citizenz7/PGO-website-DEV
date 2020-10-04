@@ -32,12 +32,6 @@
         </div>
         <div class="col-sm-3 shadow pt-3">
             <span class="mb-4" style="font-size:1rem; color:#3d8dcb;">About PengolinCoin</span>
-            {% if is_granted('ROLE_ADMIN') %}
-                <p class="d-flex justify-content-between align-items-center ">
-                    <a class="btn btn-info px-4" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a> 
-                    {{ include('admin/articles/_delete_form.html.twig') }}
-                </p>
-            {% endif %}
             <p class="text-justify mt-4" style="font-size:13px;">
                 PengolinCoin is a Proof of Stake (PoS), open source, decentralized blockchain-based cryptocurrency focused on achieving fast transactions, an active and involved community, real-world utilization, network scalability, and fungibility. PengolinCoin’s goal is to be accessible to everyone, everywhere.
             </p>
@@ -49,6 +43,19 @@
                 <a href="http://twitter.com/intent/tweet?text=%20https://blog.pengolincoin.xyz{{ path('article_show', {'id': article.id}) }}/;&url=https://twitter.com/pengolinC" target="_blank"><i class="fab fa-twitter-square fa-2x mt-2 mr-3"></i></a>
                 <a href="https://www.facebook.com/sharer?u=https://blog.pengolincoin.xyz{{ path('article_show', {'id': article.id}) }}/" target="_blank"><i class="fab fa-facebook-square fa-2x mt-2 mr-3"></i></a>
             </p>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <p class="text-center pt-3" style="font-size:1rem; color:#3d8dcb;">Admin</p>
+                <div class="row text-center py-3 px-2 mx-1 border">
+                    <div class="col">
+                        <a class="btn btn-info px-4" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
+                    </div>
+                    <div class="col">
+                        {{ include('admin/articles/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            {% endif %}
+
         </div>
     </div>
 </div>
