@@ -6,23 +6,20 @@
 
 <h2 class="font-weight-bold">Feature articles</h2>
 <div class="row mt-2 p-3">
-    {% for article in articles %}
-        {% if article.featured == 'yes' %}
-        <div class="col-sm-4 shadow">
-            <span class="font-weight-bold" style="font-size:16px;">
-                <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
-            </span>
-            <div class="card-text text-justify text-muted" style="font-size:13px;">
-                <img src="uploads/article_image/{{ article.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;"
-                    alt="{{ article.title }}" />
-                {{ article.content|slice(0, 100)|raw }}... <span class="badge badge-pill badge-info py-1 rounded">
-                    <i class="far fa-clock"></i>
-                    {{ article.createdAt
-                ? article.createdAt|date('m-d-Y')
-                : '' }}
+    {% for f in featured | reverse %}
+        {% if f.featured == "yes" %}
+            <div class="col-sm-4 shadow">
+                <span class="font-weight-bold" style="font-size:16px;">
+                    <a href="{{ path('article_show', {'slug': f.slug}) }}">{{ f.title }} - {{ f.id }}</a>
                 </span>
+                <div class="card-text text-justify text-muted" style="font-size:13px;">
+                    <img src="uploads/article_image/{{ f.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;" alt="{{ f.title }}" />
+                    {{ f.content|slice(0, 100)|raw }}... 
+                    <span class="badge badge-pill badge-info py-1 rounded">
+                        <i class="far fa-clock"></i> {{ f.createdAt ? f.createdAt|date('m-d-Y') : '' }}
+                    </span>
+                </div>
             </div>
-        </div>
         {% endif %}
     {% endfor %}
 </div>
@@ -39,7 +36,7 @@
                 </div>
                 <div class="card-body">
                     <h4 class="card-title font-weight-bold">
-                        <a href="{{ path('article_show', {'id': article.id}) }}">{{ article.title }}</a>
+                        <a href="{{ path('article_show', {'slug': article.slug}) }}">{{ article.title }}</a>
                     </h4>
                     <div class="card-text text-justify text-muted">
                         {{ article.content|slice(0, 290)|raw }}...
@@ -73,41 +70,4 @@
     {{ knp_pagination_render(articles) }}
 </div>
 
-{#
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Image</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
-                <td>{{ article.image }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('article_new') }}">Create new</a>
-#}
 {% endblock %}

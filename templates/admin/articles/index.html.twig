@@ -21,13 +21,18 @@
             {% for article in articles %}
                 <tr>
                     <td>{{ article.id }}</td>
-                    <td>{{ article.title }}</td>
+                    <td>
+                        {{ article.title }}
+                        {% if article.featured == 'yes' %}
+                            <i class="fas fa-star text-info" data-toggle="tooltip" data-placement="top" title="Featured"></i>
+                        {% endif %}
+                    </td>
                     <td style="font-size: 13px;">{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                     <td style="font-size: 13px;">{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                        <a class="btn btn-warning btn-sm" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
-                        <a class="btn btn-danger btn-sm" href="{{ path('article_delete', {'id': article.id}) }}">delete</a>
+                        <a class="btn btn-primary btn-sm" href="{{ path('article_show', {'slug': article.slug}) }}">show</a>
+                        <a class="btn btn-warning btn-sm" href="{{ path('article_edit', {'slug': article.slug}) }}">edit</a>
+                        <a class="btn btn-danger btn-sm" href="{{ path('article_delete', {'slug': article.slug}) }}">delete</a>
                     </td>
                 </tr>
             {% else %}

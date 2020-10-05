@@ -6,42 +6,45 @@
 <div class="container py-3">
     <div class="row">
         <div class="col shadow mr-4 pt-2 pb-3 text-justify">
-            <h2 class="font-weight-bold pb-3">{{ article.title }}</h2>
-            <a href="{{path('category_show', { id: article.category.id }) }}" class="badge badge-primary p-2 rounded">
+            <h2 class="font-weight-bold pb-2">{{ article.title }}</h2>
+            <a href="{{path('category_show', { id: article.category.id }) }}" class="badge badge-primary p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Category">
                 <i class="fas fa-tag"></i> {{ article.category.title }}
             </a>
-            <span class="badge badge-pill badge-info p-2 rounded">
+            <span class="badge badge-pill badge-info p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Article posted at">
                 <i class="far fa-clock"></i> {{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}
             </span>
             {% if article.updatedAt != null %}
-                <span class="badge badge-pill badge-secondary p-2 rounded">
+                <span class="badge badge-pill badge-secondary p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Article updated at">
                     <i class="fas fa-history"></i> {{ article.updatedAt ? article.updatedAt|date('d-m-Y H:i:s') : '' }}
                 </span>
             {% endif %}
 
-            <span class="badge badge-pill badge-warning p-2 rounded">
+            <span class="badge badge-pill badge-warning p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Author">
                 <i class="far fa-user"></i> {{ article.author.username }}
             </span> 
-            <span class="badge badge-pill badge-success p-2 rounded">
+            <span class="badge badge-pill badge-success p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Number of views">
                 <i class="fas fa-eye"></i> {{ article.views}}
             </span>
-            <p>
-                <img src="../uploads/article_image/{{ article.image }}" class="img-fluid float-left mr-3 mt-4" style="max-width: 400px;" alt="{{ article.title }}">
+            <p class="pt-4">
+                <img src="../uploads/article_image/{{ article.image }}" class="img-fluid float-left mr-3 mt-4 shadow" style="max-width: 350px;" alt="{{ article.title }}">
                 {{ article.content | raw }}
             </p>
         </div>
         <div class="col-sm-3 shadow pt-3">
             <span class="mb-4" style="font-size:1rem; color:#3d8dcb;">About PengolinCoin</span>
-            <p class="text-justify mt-4" style="font-size:13px;">
+            <p class="text-justify mt-3 font-italic" style="font-size:13px;">
                 PengolinCoin is a Proof of Stake (PoS), open source, decentralized blockchain-based cryptocurrency focused on achieving fast transactions, an active and involved community, real-world utilization, network scalability, and fungibility. PengolinCoin’s goal is to be accessible to everyone, everywhere.
             </p>
-            <p class="pt-1">
-                <a href="https://www.pengolincoin.xyz" style="font-size:0.80rem; color:#3d8dcb;" target="_blank"><i class="fas fa-link"></i> Go to PengolinCoin homepage</a>
+            <p class="pt-1 text-center">
+                <a href="https://www.pengolincoin.xyz" class="btn btn-block btn-outline-info" style="font-size:0.80rem;" target="_blank"><i class="fas fa-link"></i> 
+                    Visit PengolinCoin homepage
+                </a>
             </p>
-            <p class="text-justify mt-3 p-3 text-center border">
+            <p class="text-justify mt-4 pt-2 pb-3 text-center border">
                 <span style="font-size:1rem; color:#3d8dcb;">Share this article</span><br>
-                <a href="http://twitter.com/intent/tweet?text=%20https://blog.pengolincoin.xyz{{ path('article_show', {'id': article.id}) }}/;&url=https://twitter.com/pengolinC" target="_blank"><i class="fab fa-twitter-square fa-2x mt-2 mr-3"></i></a>
-                <a href="https://www.facebook.com/sharer?u=https://blog.pengolincoin.xyz{{ path('article_show', {'id': article.id}) }}/" target="_blank"><i class="fab fa-facebook-square fa-2x mt-2 mr-3"></i></a>
+                <a href="http://twitter.com/intent/tweet?text=%20https://blog.pengolincoin.xyz{{ path('article_show', {'slug': article.slug}) }}/;&url=https://twitter.com/pengolinC" target="_blank"><i class="fab fa-twitter-square fa-2x mt-2 mr-3"></i></a>
+                <a href="https://www.facebook.com/sharer?u=https://blog.pengolincoin.xyz{{ path('article_show', {'slug': article.slug}) }}/" target="_blank"><i class="fab fa-facebook-square fa-2x mt-2 mr-3"></i></a>
+                <a href="https://reddit.com/submit?url={{ path('article_show', {'slug': article.slug}) }}/&title={{article.title}}" target="_blank"><i class="fab fa-reddit-square fa-2x mt-2"></i></a>
             </p>
 
             {% if is_granted('ROLE_ADMIN') %}
@@ -50,7 +53,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <a class="btn btn-info px-4" href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
+                                <a class="btn btn-info px-4" href="{{ path('article_edit', {'slug': article.slug}) }}">Edit</a>
                             </td>
                             <td>
                                 {{ include('admin/articles/_delete_form.html.twig') }}

@@ -142,7 +142,7 @@ class AdminController extends AbstractController
     }
 
     /**
-    * @Route("/admin/{id}/article/edit", name="article_edit", methods={"GET","POST"})
+    * @Route("/admin/article/{slug}/edit", name="article_edit", methods={"GET","POST"})
     */
     public function editArticle(Request $request, Article $article): Response
     {
@@ -203,7 +203,7 @@ class AdminController extends AbstractController
     }
 
     /**
-    * @Route("/admin/article/{id}/delete", name="article_delete", methods={"DELETE"})
+    * @Route("/admin/article/{slug}/delete", name="article_delete", methods={"DELETE"})
     */
     public function deleteArticle(Request $request, Article $article): Response
     {

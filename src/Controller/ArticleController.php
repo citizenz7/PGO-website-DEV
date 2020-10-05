@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Repository\ArticleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +17,15 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="article_index", methods={"GET"})
      */
-    public function indexArticle(Request $request, PaginatorInterface $paginator)
+    public function indexArticle(Request $request, ArticleRepository $repo, PaginatorInterface $paginator)
     {
 
         //$donnees = $repo->findAll();
         // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
         $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'desc']);
+
+        // Featured articles - Index page
+        $featured = $this->getDoctrine()->getRepository(Article::class)->findBy([],['featured' => 'desc'], 3);
 
         $articles = $paginator->paginate(
             $donnees, // on passe les données
@@ -31,12 +35,13 @@ class ArticleController extends AbstractController
 
         return $this->render('article/index.html.twig', [
             'controller_name' => 'ArticleController',
-            'articles' => $articles
+            'articles' => $articles,
+            'featured' => $featured,
         ]);
     }
 
     /**
-     * @Route("/article/{id}", name="article_show", methods={"GET"})
+     * @Route("/article/{slug}", name="article_show", methods={"GET"})
      */
     public function showArticle(Article $article): Response
     {

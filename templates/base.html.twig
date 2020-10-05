@@ -179,6 +179,11 @@
     
     {% block javascripts %}
       <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+      </script>
+      <script>
         $('.custom-file-input').on('change', function(event) {
             var inputFile = event.currentTarget;
             $(inputFile).parent()
