@@ -1,0 +1,7 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success btn-sm mt-4">{{ button_label|default('Save') }}</button>
+    <a class="btn btn-primary btn-sm mt-4" href="{{ path('user_show', {'id': user.id}) }}">Back to profile</a>
+{{ form_end(form) }}

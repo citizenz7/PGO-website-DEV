@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col shadow mr-4 pt-2 pb-3 text-justify">
             <h2 class="font-weight-bold pb-2">{{ article.title }}</h2>
-            <a href="{{path('category_show', { id: article.category.id }) }}" class="badge badge-primary p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Category">
+            <a href="{{path('category_show', { slug: article.category.slug }) }}" class="badge badge-primary p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Category">
                 <i class="fas fa-tag"></i> {{ article.category.title }}
             </a>
             <span class="badge badge-pill badge-info p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Article posted at">
@@ -49,11 +49,12 @@
 
             {% if is_granted('ROLE_ADMIN') %}
             <p>
+                <span style="font-size:1rem; color:#3d8dcb;">Admin</span><br>
                 <table class="table text-center">
                     <tbody>
                         <tr>
                             <td>
-                                <a class="btn btn-info px-4" href="{{ path('article_edit', {'slug': article.slug}) }}">Edit</a>
+                                <a class="btn btn-info btn-sm px-4" href="{{ path('article_edit', {'slug': article.slug}) }}">Edit</a>
                             </td>
                             <td>
                                 {{ include('admin/articles/_delete_form.html.twig') }}

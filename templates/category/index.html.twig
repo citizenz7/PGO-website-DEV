@@ -8,28 +8,23 @@
     <ul>
     <li>Créer un accordeon pour chaque catégorie</li>
     <li>Enlever les edit</li>
-    <li>mettre le show sur le titre</ul>li>
+    <li>mettre le show sur le titre</li>
     </ul>
+
+    <br><br>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Content</th>
-                <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for category in categories %}
             <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.title }}</td>
+                <td><a href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.title }}</a></td>
                 <td>{{ category.content|raw }}</td>
-                <td>
-                    <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>
@@ -39,5 +34,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('category_new') }}">Create new</a>
+    <div class="pagination justify-content-center px-2">
+    {{ knp_pagination_render(categories) }}
+</div>
+
 {% endblock %}

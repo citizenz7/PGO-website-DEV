@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Category;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,16 +23,17 @@ class ArticleController extends AbstractController
     {
 
         //$donnees = $repo->findAll();
-        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
+        // findBy method: allows to retrieve data with filter and sort criteria
+        // All index page articles sorted by creation date from most recent to oldest
         $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'desc']);
 
-        // Featured articles - Index page
+        // Featured articles - Index page - sorted by featured field + desc + limit 3
         $featured = $this->getDoctrine()->getRepository(Article::class)->findBy([],['featured' => 'desc'], 3);
 
         $articles = $paginator->paginate(
-            $donnees, // on passe les données
-            $request->query->getInt('page', 1), // N° de la page en cours, 1 par défaut
-            6 // nombre d'éléments par page
+            $donnees, // Let's send the data
+            $request->query->getInt('page', 1), // Current page number, 1 by default
+            6 // number of items per page
         );
 
         return $this->render('article/index.html.twig', [

@@ -3,6 +3,11 @@
 {% block title %}Category{% endblock %}
 
 {% block body %}
+
+<div class="alert alert-primary mb-4">
+    <a href="{{ path('admin_index') }}"><i class="fas fa-caret-left"></i> Back to admin index</a>
+</div>
+
     <h2>{{ category.title }}</h2>
 
     <div class="row">
@@ -10,10 +15,6 @@
             {{ category.content | raw}}
         </div>
     </div>
-    
-
-    Retravailler la page : <strike>nom de la catégorie, description, (image en dur ?),</strike> liste des articles, pagination
-    <br><br>
 
     {#}
     <a class="btn btn-primary" href="{{ path('category_index') }}">back to list</a>

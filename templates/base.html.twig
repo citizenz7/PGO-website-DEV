@@ -99,12 +99,17 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <span class="dropdown-item">Hey!, {{ app.user.username }}</span>
+
                 {% if is_granted('ROLE_ADMIN') %}
                   <span class="dropdown-item">Status: Admin</span>
                   <a class="dropdown-item" href="{{ path('admin_index') }}"><i class="fas fa-user-cog"></i> Go to Admin</a>
                 {% else %}
                 <span class="dropdown-item">Status: User</span>
                 {% endif %}
+
+                <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Your profile</a>
+                  <a class="dropdown-item" href="/reset-password">Reset password</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ path('app_logout') }}">
                   <i class="fas fa-sign-out-alt"></i> Logout
@@ -140,23 +145,23 @@
             <div id="footer-copyright" class="col text-center">
               <span class="text-muted">&copy; 2020 - The PGO Project</span>
               <div id="footer-resources">
-                <a href="https://twitter.com/PengolinC" title="PGO Twitter" class="px-2">
+                <a href="https://twitter.com/PengolinC" title="PGO Twitter" class="px-2 text-decoration-none">
                   <i class="fab fa-twitter-square"></i>
                 </a>
-                <a href="https://www.facebook.com/PengolinCoin-105101314474751" title="PGO Facebook" class="px-2">
+                <a href="https://www.facebook.com/PengolinCoin-105101314474751" title="PGO Facebook" class="px-2 text-decoration-none">
                   <i class="fab fa-facebook-square"></i>
                 </a>
-                <a href="https://t.me/pengolincoin" title="PGO Telegram channel" class="px-2">
+                <a href="https://t.me/pengolincoin" title="PGO Telegram channel" class="px-2 text-decoration-none">
                   <i class="fab fa-telegram-plane"></i>
                 </a>
-                <a href="https://discord.gg/XTk8u4w" title="PGO Discord server" class="px-2">
+                <a href="https://discord.gg/XTk8u4w" title="PGO Discord server" class="px-2 text-decoration-none">
                   <i class="fab fa-discord"></i>
                 </a>
-                <a href="https://bitcointalk.org/index.php?topic=5234832.0" title="PGO Bitcointalk thread" class="px-2">
+                <a href="https://bitcointalk.org/index.php?topic=5234832.0" title="PGO Bitcointalk thread" class="px-2 text-decoration-none">
                   <i class="fab fa-bitcoin"></i>
                 </a>
                 <a href="https://github.com/pengolincoin"
-                  title="PGO Github" class="px-2">
+                  title="PGO Github" class="px-2 text-decoration-none">
                   <i class="fab fa-github-square"></i>
                 </a>
               </div>
@@ -178,11 +183,14 @@
     crossorigin="anonymous"></script>
     
     {% block javascripts %}
+      <!-- Tooltip -->
       <script>
         $(function () {
           $('[data-toggle="tooltip"]').tooltip()
         })
       </script>
+
+      <!-- Input type file name fix -->
       <script>
         $('.custom-file-input').on('change', function(event) {
             var inputFile = event.currentTarget;

@@ -30,7 +30,7 @@
             {{ article.content | slice(0, 250) | raw }} ...
           </p>
           <p class="text-right">
-            <a href="{{ path('article_show', {'id': article.id}) }}" class="btn btn-primary">Read more</a>
+            <a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Read more</a>
           </p>
         </div>
       {% endfor %}

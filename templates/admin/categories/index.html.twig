@@ -4,9 +4,44 @@
 
 {% block body %}
 
+<div class="alert alert-primary mb-4">
+    <a href="{{ path('admin_index') }}"><i class="fas fa-caret-left"></i> Back to admin index</a>
+</div>
+
 <div class="row">
     <div class="col">
-        <h3>Admin Index Categories</h3>
+        <h3>Category Admin Index</h3>
+        <table class="table" style="font-size:0.85rem;">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th width="60%">Title</th>
+                    <th>Slug</th>
+                    <th>Show</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id}}</td>
+                    <td>{{ category.title }}</td>
+                    <th>{{ category.slug }}</th>
+                    <td><a class="btn btn-primary btn-sm" href="{{ path('category_show', {'slug': category.slug}) }}">show</a></td>
+                    <td><a class="btn btn-warning btn-sm" href="{{ path('category_edit', {'slug': category.slug}) }}">edit</a></td>
+                    <td>{{ include('admin/categories/_delete_form.html.twig') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="pagination justify-content-center px-2">
+            {{ knp_pagination_render(categories) }}
+        </div>
     </div>
 </div>
 

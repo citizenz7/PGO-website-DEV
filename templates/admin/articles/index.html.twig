@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Welcome on Admin dashboard{% endblock %}
+{% block title %}Articles admin index{% endblock %}
 
 {% block body %}
 
+<div class="alert alert-primary mb-4">
+    <a href="{{ path('admin_index') }}"><i class="fas fa-caret-left"></i> Back to admin index</a>
+</div>
+
 <div class="row">
     <div class="col">
-        <h3>Article Admin Index</h3>
-        <table class="table">
+        <h3>Articles Admin Index</h3>
+        <table class="table" style="font-size:0.85rem;">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Title</th>
+                    <th>Slug</th>
                     <th>Posted on</th>
                     <th>Updated on</th>
-                    <th width="17%">Actions</th>
+                    <th>Show</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,13 +34,12 @@
                             <i class="fas fa-star text-info" data-toggle="tooltip" data-placement="top" title="Featured"></i>
                         {% endif %}
                     </td>
-                    <td style="font-size: 13px;">{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                    <td style="font-size: 13px;">{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="{{ path('article_show', {'slug': article.slug}) }}">show</a>
-                        <a class="btn btn-warning btn-sm" href="{{ path('article_edit', {'slug': article.slug}) }}">edit</a>
-                        <a class="btn btn-danger btn-sm" href="{{ path('article_delete', {'slug': article.slug}) }}">delete</a>
-                    </td>
+                    <td>{{ article.slug }}</td>
+                    <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td><a class="btn btn-primary btn-sm" href="{{ path('article_show', {'slug': article.slug}) }}">show</a></td>
+                    <td><a class="btn btn-warning btn-sm" href="{{ path('article_edit', {'slug': article.slug}) }}">edit</a></td>
+                    <td>{{ include('admin/articles/_delete_form.html.twig') }}</td>
                 </tr>
             {% else %}
                 <tr>

@@ -9,12 +9,12 @@
     {% for f in featured | reverse %}
         {% if f.featured == "yes" %}
             <div class="col-sm-4 shadow">
-                <span class="font-weight-bold" style="font-size:16px;">
-                    <a href="{{ path('article_show', {'slug': f.slug}) }}">{{ f.title }} - {{ f.id }}</a>
+                <span class="font-weight-bold" style="font-size:15px;">
+                    <a href="{{ path('article_show', {'slug': f.slug}) }}">{{ f.title }}</a>
                 </span>
                 <div class="card-text text-justify text-muted" style="font-size:13px;">
                     <img src="uploads/article_image/{{ f.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;" alt="{{ f.title }}" />
-                    {{ f.content|slice(0, 100)|raw }}... 
+                    {{ f.content|slice(0, 80)|raw }}... 
                     <span class="badge badge-pill badge-info py-1 rounded">
                         <i class="far fa-clock"></i> {{ f.createdAt ? f.createdAt|date('m-d-Y') : '' }}
                     </span>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="card-footer bg-transparent pb-3">
-                <a href="{{path('category_show', { id: article.category.id }) }}"
+                <a href="{{path('category_show', { slug: article.category.slug }) }}"
                     class="badge badge-primary p-2 rounded">
                     <i class="fas fa-tag"></i> {{ article.category.title }}
                 </a>

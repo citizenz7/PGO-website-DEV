@@ -62,7 +62,7 @@ class AdminController extends AbstractController
         $categories = $paginator->paginate(
             $donnees, // on passe les données
             $request->query->getInt('page', 1), // N° de la page en cours, 1 par défaut
-            3 // nombre d'éléments par page
+            5 // nombre d'éléments par page
         );
 
         return $this->render('admin/categories/index.html.twig', [
@@ -183,7 +183,7 @@ class AdminController extends AbstractController
     }
 
     /**
-    * @Route("/admin/{id}/category/edit", name="category_edit", methods={"GET","POST"})
+    * @Route("/admin/category/{slug}/edit", name="category_edit", methods={"GET","POST"})
     */
     public function editCategory(Request $request, Category $category): Response
     {
@@ -207,7 +207,7 @@ class AdminController extends AbstractController
     */
     public function deleteArticle(Request $request, Article $article): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$article->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
             $destination = $this->getParameter('kernel.project_dir').'/public/uploads/article_image/';
@@ -221,11 +221,11 @@ class AdminController extends AbstractController
     }
 
     /**
-    * @Route("/admin/category/{id}/delete", name="category_delete", methods={"DELETE"})
+    * @Route("/admin/category/{slug}/delete", name="category_delete", methods={"DELETE"})
     */
     public function deleteCategory(Request $request, Category $category): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$category->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
 
             $entityManager->remove($category);
