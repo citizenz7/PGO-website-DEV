@@ -1,9 +1,23 @@
-<h1>Hi!</h1>
+<img style="max-height: 50px;" src="https://www.pengolincoin.xyz/img/PGO-black-banner-1.png">
+
+<br><br>
+
+<h3>Hi!</h3>
+
+<p>
+    You've just made a request to reset your password for <a href="https://blog.pengolincoin.xyz">PengolinCoin Blog</a>
+</p>
 
 <p>To reset your password, please visit the following link</p>
 
 <a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
 
-<p>This link will expire in {{ tokenLifetime|date('g') }} hour(s).</p>
+<p>This link will expire in {{ tokenLifetime|date('g') }} hours.</p>
 
-<p>Cheers!</p>
+<p>
+    The PengolinCoin team<br>
+    Cheers!
+</p>
+<p>
+    PengolinCoin website: <a href="https://www.pengolincoin.xyz">https://www.pengolincoin.xyz</a>
+</p>

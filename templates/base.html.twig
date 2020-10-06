@@ -126,14 +126,32 @@
     </div>
 
     <div class="container pt-4 pb-5">
-      {% for msg in app.session.flashBag.get('successMessage') %}
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-          {{ msg }}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-      </div>
-    {% endfor %}
+      {% for msg in app.session.flashBag.get('success')  %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endfor %}
+
+      {% for msg in app.session.flashBag.get('successMessage')  %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endfor %}
+
+      {% for msg in app.session.flashBag.get('successResetPassword')  %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      {% endfor %}
     
       {% block body %}{% endblock %}
     </div>
