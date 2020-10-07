@@ -21,14 +21,13 @@ class ArticleController extends AbstractController
      */
     public function indexArticle(Request $request, ArticleRepository $repo, PaginatorInterface $paginator)
     {
+        // Featured articles - Index page - sorted by featured field + desc + limit 3
+        $featured = $this->getDoctrine()->getRepository(Article::class)->findBy([],['featured' => 'desc'], 3, 2);
 
         //$donnees = $repo->findAll();
         // findBy method: allows to retrieve data with filter and sort criteria
         // All index page articles sorted by creation date from most recent to oldest
         $donnees = $this->getDoctrine()->getRepository(Article::class)->findBy([],['created_at' => 'desc']);
-
-        // Featured articles - Index page - sorted by featured field + desc + limit 3
-        $featured = $this->getDoctrine()->getRepository(Article::class)->findBy([],['featured' => 'desc'], 3);
 
         $articles = $paginator->paginate(
             $donnees, // Let's send the data
@@ -68,6 +67,18 @@ class ArticleController extends AbstractController
     {
         return $this->render('category/show.html.twig', [
             'category' => $category,
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}", name="user_connecte", methods={"GET"})
+     */
+    public function show(User $user, UserRepository $repo): Response
+    {
+        $connecte = $repo->findAll();
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+            'connecte' => $connecte,
         ]);
     }
 

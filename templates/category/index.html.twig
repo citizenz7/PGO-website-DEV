@@ -3,15 +3,9 @@
 {% block title %}Category index{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+    <h2 class="mt-4">Category index</h2>
 
-    <ul>
-    <li>Créer un accordeon pour chaque catégorie</li>
-    <li>Enlever les edit</li>
-    <li>mettre le show sur le titre</li>
-    </ul>
-
-    <br><br>
+    <br>
 
     <table class="table">
         <thead>
@@ -24,7 +18,7 @@
         {% for category in categories %}
             <tr>
                 <td><a href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.title }}</a></td>
-                <td>{{ category.content|raw }}</td>
+                <td>{{ category.content|slice(0,80)|raw }}...</td>
             </tr>
         {% else %}
             <tr>

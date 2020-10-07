@@ -3,9 +3,9 @@
 {% block title %}Pengolincoin Blog: {{ article.title }}{% endblock %}
 
 {% block body %}
-<div class="container py-3">
+<div class="container my-4">
     <div class="row">
-        <div class="col shadow mr-4 pt-2 pb-3 text-justify">
+        <div class="col shadow mr-4 pt-3 pb-3 text-justify">
             <h2 class="font-weight-bold pb-2">{{ article.title }}</h2>
             <a href="{{path('category_show', { slug: article.category.slug }) }}" class="badge badge-primary p-2 rounded" data-toggle="tooltip" data-placement="bottom" title="Category">
                 <i class="fas fa-tag"></i> {{ article.category.title }}
@@ -39,10 +39,16 @@
                 <a href="https://www.pengolincoin.xyz" class="btn btn-block btn-outline-info" style="font-size:0.80rem;" target="_blank"><i class="fas fa-link"></i> 
                     Visit PengolinCoin homepage
                 </a>
+                <a href="https://github.com/pengolincoin/PengolinCoin-Core/releases/latest" class="btn btn-block btn-outline-warning" style="font-size:0.80rem;" target="_blank"><i class="fas fa-link"></i> 
+                    Download latest release
+                </a>
+                <a href="https://discord.gg/XTk8u4w" class="btn btn-block btn-outline-primary" style="font-size:0.80rem;" target="_blank"><i class="fas fa-link"></i> 
+                    Join on Discord
+                </a>
             </p>
             <p class="text-justify mt-4 pt-2 pb-3 text-center border">
                 <span style="font-size:1rem; color:#3d8dcb;">Share this article</span><br>
-                <a href="http://twitter.com/intent/tweet?text=%20https://blog.pengolincoin.xyz{{ path('article_show', {'slug': article.slug}) }}/;&url=https://twitter.com/pengolinC" target="_blank"><i class="fab fa-twitter-square fa-2x mt-2 mr-3"></i></a>
+                <a href="http://twitter.com/intent/tweet?text=%20https://blog.pengolincoin.xyz{{ path('article_show', {'slug': article.slug}) }}" target="_blank"><i class="fab fa-twitter-square fa-2x mt-2 mr-3"></i></a>
                 <a href="https://www.facebook.com/sharer?u=https://blog.pengolincoin.xyz{{ path('article_show', {'slug': article.slug}) }}/" target="_blank"><i class="fab fa-facebook-square fa-2x mt-2 mr-3"></i></a>
                 <a href="https://reddit.com/submit?url={{ path('article_show', {'slug': article.slug}) }}/&title={{article.title}}" target="_blank"><i class="fab fa-reddit-square fa-2x mt-2"></i></a>
             </p>

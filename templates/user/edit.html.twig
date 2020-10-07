@@ -3,7 +3,7 @@
 {% block title %}Edit User: {{ user.username }}{% endblock %}
 
 {% block body %}
-    <h2>Edit User: {{ user.username }}</h2>
+    <h2 class="mt-4">Edit User: {{ user.username }}</h2>
 
     {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
 

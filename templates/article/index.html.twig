@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h2 class="font-weight-bold">Feature articles</h2>
+<h2 class="font-weight-bold mt-4">Feature articles</h2>
 <div class="row mt-2 p-3">
     {% for f in featured | reverse %}
         {% if f.featured == "yes" %}
@@ -16,7 +16,7 @@
                     <img src="uploads/article_image/{{ f.image }}" class="float-left mr-2 pt-1" style="max-width: 80px;" alt="{{ f.title }}" />
                     {{ f.content|slice(0, 80)|raw }}... 
                     <span class="badge badge-pill badge-info py-1 rounded">
-                        <i class="far fa-clock"></i> {{ f.createdAt ? f.createdAt|date('m-d-Y') : '' }}
+                        <i class="far fa-clock"></i> {{ f.createdAt ? f.createdAt|date('Y-m-d') : '' }}
                     </span>
                 </div>
             </div>
@@ -29,7 +29,7 @@
     {% for article in articles|slice(0, 6) %}
     <div class="col mb-4">
         <div class="card h-100 shadow rounded">
-            <div class="wprock-img-zoom-hover">
+            <div class="wprock-img-zoom-hover h-100">
                 <div class="wprock-img-zoom">
                     <img src="uploads/article_image/{{ article.image }}" class="card-img-top" style="max-height: 369px;"
                         alt="{{ article.title }}" />
@@ -51,7 +51,7 @@
                 <span class="badge badge-pill badge-info p-2 rounded">
                     <i class="far fa-clock"></i>
                     {{ article.createdAt
-                ? article.createdAt|date('m-d-Y H:i:s')
+                ? article.createdAt|date('Y-m-d H:i:s')
                 : '' }}
                 </span>
                 <span class="badge badge-pill badge-warning p-2 rounded">

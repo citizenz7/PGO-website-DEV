@@ -18,9 +18,7 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
-    
-    
-    
+
     //public function index(UserRepository $userRepository): Response
     public function index()
     {
@@ -33,9 +31,10 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    //public function new(Request $request): Response
+    public function new(Request $request)
     {
-        $user = new User();
+        /*$user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -50,7 +49,8 @@ class UserController extends AbstractController
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-        ]);
+        ]);*/
+        return $this->redirectToRoute('article_index');
     }
 
     /**

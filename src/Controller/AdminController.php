@@ -57,7 +57,8 @@ class AdminController extends AbstractController
     */
     public function indexCategories(CategoryRepository $repo, Request $request, PaginatorInterface $paginator)
     {
-        $donnees = $repo->findAll();
+        //$donnees = $repo->findAll();
+        $donnees = $this->getDoctrine()->getRepository(Category::class)->findBy([],['id' => 'desc']);
 
         $categories = $paginator->paginate(
             $donnees, // on passe les données
@@ -193,7 +194,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_index');
+            return $this->redirectToRoute('admin_categories');
         }
 
         return $this->render('admin/categories/edit.html.twig', [

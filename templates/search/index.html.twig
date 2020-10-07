@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container mt-4">
     <h2>Your search</h2>
     <div class="form-group">
         {% form_theme searchForm 'bootstrap_4_layout.html.twig' %}
@@ -24,7 +24,7 @@
       {% for article in articles %}
         <div class="mt-3 py-3 px-3 shadow">
           <h4 class="card-title font-weight-bold">{{ article.title }}</h4>
-          <span class="badge badge-primary p-2 rounded">Posted on {{ article.createdAt | date('d/m/Y') }}</span>
+          <span class="badge badge-primary p-2 rounded">Posted on {{ article.createdAt | date('m/d/Y') }}</span>
           <span class="badge badge-info p-2 rounded">{{ article.category.title }}</span>
           <p class="card-text text-justify text-muted">
             {{ article.content | slice(0, 250) | raw }} ...

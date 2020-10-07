@@ -3,40 +3,52 @@
 {% block title %}Your profile: {{ user.username }}{% endblock %}
 
 {% block body %}
-    <h2>{{ user.username }}</h2>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>User ID</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Role</th>
-                <td>
-                    {% if user.roles|json_encode == '["ROLE_ADMIN","ROLE_USER"]' %}
-                        Administrator
-                    {% else %}
-                        User
-                    {% endif %}
-                    {#{ user.roles ? user.roles|json_encode : '' }#}
-                </td>
-            </tr>
+    {% if app.user.id == user.id %}
 
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h2 class="mt-4">{{ user.username }}</h2>
 
-    <!-- <a class="btn btn-primary btn-sm" href="{#{ path('user_index') }#}">Back to list</a> -->
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>User ID</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Username</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>Role</th>
+                    <td>
+                        {% if user.roles|json_encode == '["ROLE_ADMIN","ROLE_USER"]' %}
+                            Administrator
+                        {% else %}
+                            User
+                        {% endif %}
+                        {#{ user.roles ? user.roles|json_encode : '' }#}
+                    </td>
+                </tr>
 
-    <a class="btn btn-success btn-sm" href="{{ path('user_edit', {'id': user.id}) }}">Edit your profile</a>
-    <a class="btn btn-warning btn-sm" href="/reset-password">Reset your password</a>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- <a class="btn btn-primary btn-sm" href="{#{ path('user_index') }#}">Back to list</a> -->
+
+        <a class="btn btn-success btn-sm" href="{{ path('user_edit', {'id': user.id}) }}">Edit your profile</a>
+        <a class="btn btn-warning btn-sm" href="/reset-password">Reset your password</a>
+    {% else %}
+
+        <div class="mt-4 p-3 alert alert-danger">
+            You can't access to this page!
+            <br><br>
+            Go back to <a href="{{ path('article_index') }}">homepage</a>
+        </div>
+
+    {% endif %}
 
 {% endblock %}

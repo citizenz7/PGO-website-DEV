@@ -36,7 +36,7 @@
 
   <body id="tothetop">
     <div class="container-fluid m-0 p-0">
-      <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #3d8dcb;">
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3d8dcb;">
         <a class="navbar-brand" href="{{ path('article_index') }}">
           <img class="img-fluid" src="https://www.pengolincoin.xyz/img/assets/PGO_64x64.png" alt="PengolinCoin" />
           <span class="logo">PengolinCoin</span> 
@@ -99,17 +99,18 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <span class="dropdown-item">Hey!, {{ app.user.username }}</span>
+                <div class="dropdown-divider"></div>
 
                 {% if is_granted('ROLE_ADMIN') %}
                   <span class="dropdown-item">Status: Admin</span>
-                  <a class="dropdown-item" href="{{ path('admin_index') }}"><i class="fas fa-user-cog"></i> Go to Admin</a>
+                  <a class="dropdown-item" href="{{ path('admin_index') }}"><i class="fas fa-cogs"></i> Go to Admin</a>
                 {% else %}
                 <span class="dropdown-item">Status: User</span>
                 {% endif %}
 
                 <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Your profile</a>
-                  <a class="dropdown-item" href="/reset-password">Reset password</a>
+                  <a class="dropdown-item" href="{{ path('user_connecte', {'id': app.user.id}) }}"><i class="fas fa-user-cog"></i> Your profile</a>
+                  <a class="dropdown-item" href="/reset-password"><i class="fas fa-sync"></i> Reset password</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ path('app_logout') }}">
                   <i class="fas fa-sign-out-alt"></i> Logout
@@ -125,9 +126,9 @@
       </nav>
     </div>
 
-    <div class="container pt-4 pb-5">
+    <div class="container pt-5 mt-5 pb-5">
       {% for msg in app.session.flashBag.get('success')  %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
             {{ msg }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -136,7 +137,7 @@
       {% endfor %}
 
       {% for msg in app.session.flashBag.get('successMessage')  %}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
             {{ msg }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>

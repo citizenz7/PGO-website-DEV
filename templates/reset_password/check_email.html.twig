@@ -3,11 +3,17 @@
 {% block title %}Password Reset Email Sent{% endblock %}
 
 {% block body %}
-    <div class="alert alert-success py-3 px-3">
+    <div class="alert alert-success py-3 px-3 mt-4">
+        Done!<br>
         An email has been sent that contains a link that you can click to reset your password.<br>
         This link will expire in {{ tokenLifetime|date('g') }} hour(s).
     </div>
-    <p class="">
-        If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.
+    <p class="text-warning">
+        If you did not receive an email:
+        <ul>
+            <li>please check your spam folder,</li>
+            <li>the email address you have given is wrong or does not belong to any account on blog.pengolincoin.xyz</li>
+            <li>... or <a href="{{ path('app_forgot_password_request') }}">try again</a></li>
+        </ul>
     </p>
 {% endblock %}
