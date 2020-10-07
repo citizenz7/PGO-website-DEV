@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ status_text }}{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-4 alert-danger py-5 px-3 text-center">
+        <h1 class="display-1 font-weight-bold">
+            {{ status_code }}
+        </h1>
+        <h1 class="display-4 mb-5">{{ status_text }}</h1>
+        <h3>UH OH! You're lost.</h3>
+        The page you are looking for does not exist. How you got here is a mystery.<br>
+        But you can click the button below to go back to the homepage. 
+    </div>
+
+    <div class="mt-3 text-center">
+        <a class="btn btn-primary p-3 lead" href="{{ path('article_index') }}">
+            Back to homepage
+        </a>
+    </div>
+        
+
+{% endblock %}

@@ -6,7 +6,7 @@ Log in!
 
 {% block body %}
 <div class="container">
-    <div class="row justify-content-md-center py-5">
+    <div class="row justify-content-md-center py-4 mt-4">
         <div class="col-sm-4 card px-5 py-5">
             <form method="post">
                 {% if error %}
@@ -21,7 +21,7 @@ Log in!
                 </div>
                 {% endif %}
 
-                <h2 class="mb-5">Please sign in</h2>
+                <h2 class="mb-4">Please sign in</h2>
                 <div class="form-group">
                     <label for="inputUsername">Username</label>
                     <input type="text" value="{{ last_username }}" name="username" id="inputUsername"
@@ -43,7 +43,12 @@ Log in!
                     </label>
                 </div>
                 #}
-                <div class="text-center">
+
+                <div class="text-center mt-4" style="font-size: 13px;">
+                    Password lost? <a href="/reset-password">Reset your passord</a>
+                </div>
+
+                <div class="text-center mt-3">
                     <button class="btn btn-lg btn-primary mt-3" type="submit">Sign in</button> 
                     <button class="btn btn-lg btn-secondary mt-3" type="reset">Cancel</button>
                 </div>
