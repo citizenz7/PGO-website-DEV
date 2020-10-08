@@ -4,11 +4,11 @@
 
 {% block body %}
 
-<h2 class="font-weight-bold mt-4">Feature articles</h2>
+<h2 class="font-weight-bold">Feature articles</h2>
 <div class="row mt-2 p-3">
     {% for f in featured | reverse %}
         {% if f.featured == "yes" %}
-            <div class="col-sm-4 shadow">
+            <div class="col-sm-4 shadow mb-3">
                 <span class="font-weight-bold" style="font-size:15px;">
                     <a href="{{ path('article_show', {'slug': f.slug}) }}">{{ f.title }}</a>
                 </span>
@@ -24,7 +24,7 @@
     {% endfor %}
 </div>
 
-<h2 class="font-weight-bold pt-4">Last articles</h2>
+<h2 class="font-weight-bold pt-2">Last articles</h2>
 <div class="row row-cols-1 row-cols-md-2 pt-2 pb-4">
     {% for article in articles|slice(0, 6) %}
     <div class="col mb-4">
