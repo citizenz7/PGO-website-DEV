@@ -4,15 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="PengolinCoin, coin, PGO, currency, cryptocurrency, Bitcoin, Dash, Ethereum, ETH, BTC, blog, news, info, POS, stake, blockchain, chain, block, transactions, defi, ERC20">
-    <meta name="author" content="John Doe">
+    <meta name="author" content="citizenz7">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-      {% block title %}Welcome on PengolinCoin blog!{% endblock %}
-    </title>
+    <title>{% block title %}Welcome on PengolinCoin blog!{% endblock %}</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/spacelab/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('images/icons/apple-icon-57x57.png') }}" />
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('images/icons/apple-icon-60x60.png') }}" />
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('images/icons/apple-icon-72x72.png') }}" />
@@ -30,13 +27,12 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ asset('images/icons/ms-icon-144x144.png') }}" />
     <meta name="theme-color" content="#ffffff">
-
     {% block stylesheets %}{% endblock %}
   </head>
 
   <body id="tothetop">
-    <div class="container-fluid m-0 p-0">
-      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3d8dcb;">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3d8dcb;">
+      <div class="container">
         <a class="navbar-brand" href="{{ path('article_index') }}">
           <img class="img-fluid" src="https://www.pengolincoin.xyz/img/assets/PGO_64x64.png" alt="PengolinCoin" style="max-height:40px;">
           <span class="logo">PengolinCoin</span> 
@@ -92,7 +88,7 @@
           </ul>
 
           {% if app.user %}
-            <div class="btn-group dropleft">
+            <div class="btn-group">
               <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-user fa-2x text-white"></i>
@@ -123,8 +119,8 @@
             </a>
           {% endif %}
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
 
     <div class="container pt-5 mt-5 pb-5">
       {% for msg in app.session.flashBag.get('success')  %}
